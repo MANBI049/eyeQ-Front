@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>디자인 연습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="team-logo"></div>
+    <div class="top-txt"><span>eyeQ</span></div>
+    <div class="top-txt2"><span>설계 및 프로젝트 심화II</span></div>
+  </div>
+
+  <div class="container">
+    <div class="main-layout">
+      <div class="project-logo">
+        <div class="project-txt"><span>ScanQ 프로젝트</span></div>
+      </div>
+
+      <div class="input-box" id="dropZone">
+        <img id="previewImg" src="" alt="" style="display:none; max-width:100%; max-height:400px;">
+        <p id="uploadText">이미지를 드래그하거나 버튼을 눌러 업로드하세요</p>
+        <input type="file" id="fileInput" accept="image/*" style="display:none;">
+        <button class="upload-btn" id="uploadBtn">업로드</button>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="menu">
+        <a href="about.html">사이트 소개</a>
+        <span>|</span>
+        <a href="model.html">모델 설명</a>
+        <span>|</span>
+        <a href="reference.html">레퍼런스</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- type="module" 필수! Firebase import 때문에 -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

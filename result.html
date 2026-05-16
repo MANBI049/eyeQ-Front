@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>분석 결과</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="team-logo"></div>
+    <div class="top-txt"><span>eyeQ</span></div>
+    <div class="top-txt2"><span>설계 및 프로젝트 심화II</span></div>
+  </div>
+  <div class="container">
+    <div class="result-layout">
+
+      <!-- 업로드한 이미지 -->
+      <div class="result-image-box">
+        <img id="resultImg" src="" alt="분석 이미지">
+      </div>
+
+      <!-- 분석 결과 -->
+      <div class="result-info-box">
+        <h2>분석 결과</h2>
+        <p id="resultText">분석 중...</p>
+
+        <!-- 나중에 Flask 연결하면 여기에 진행도 표시 -->
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p id="progressText"></p>
+        <button onclick="window.location.href='index.html'">← 다시 업로드</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="result.js"></script>
+</body>
+</html>

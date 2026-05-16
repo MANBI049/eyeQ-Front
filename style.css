@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Rajdhani:wght@400;600;700&display=swap');
+
+:root {
+  --navy: #0D1B3E;
+  --navy-mid: #1A2A5E;
+  --navy-light: #2A3F7E;
+  --accent: #00C6FF;
+  --accent2: #38D9A9;
+  --bg: #EDF1F9;
+  --bg2: #F5F7FC;
+  --glass: rgba(255,255,255,0.7);
+  --border: rgba(26,42,94,0.15);
+  --shadow: 0 8px 32px rgba(13,27,62,0.12);
+  --shadow-strong: 0 16px 48px rgba(13,27,62,0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(0,198,255,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(56,217,169,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(26,42,94,0.04) 0%, transparent 70%);
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--navy);
+  min-height: 100vh;
+}
+
+/* ─── 상단 바 ─── */
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 32px;
+  height: 72px;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 20px rgba(13,27,62,0.08);
+}
+
+.team-logo {
+  background-image: url(images/team_logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.top-txt {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 2px;
+  margin-left: 12px;
+  line-height: 1;
+}
+
+.top-txt2 {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--navy-mid);
+  letter-spacing: 0.5px;
+  margin-left: 12px;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+/* ─── 컨테이너 ─── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 48px 48px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ─── 메인 레이아웃 ─── */
+.main-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 40px 0;
+  flex: 1;
+}
+
+/* ─── 프로젝트 로고 영역 ─── */
+.project-logo {
+  background-image: url(images/project_logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 380px;
+  height: 240px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 8px 24px rgba(13,27,62,0.15));
+  transition: filter 0.3s ease;
+}
+
+.project-logo:hover {
+  filter: drop-shadow(0 12px 32px rgba(0,198,255,0.25));
+}
+
+.project-txt {
+  margin-top: 260px;
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ─── 업로드 박스 ─── */
+.input-box {
+  position: relative;
+  flex: 1;
+  max-width: 700px;
+  height: 480px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--navy-mid);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.input-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,198,255,0.04) 0%, rgba(56,217,169,0.04) 100%);
+  pointer-events: none;
+}
+
+.input-box:hover {
+  border-color: rgba(0,198,255,0.4);
+  box-shadow: var(--shadow-strong), 0 0 0 4px rgba(0,198,255,0.06);
+}
+
+/* 드래그 중 */
+.input-box[style*="backgroundColor"] {
+  border-color: var(--accent);
+}
+
+#uploadText {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--navy-mid);
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ─── 업로드 버튼 ─── */
+.upload-btn {
+  position: absolute;
+  bottom: 24px;
+  width: 140px;
+  padding: 10px 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: white;
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(26,42,94,0.3);
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,42,94,0.4);
+  background: linear-gradient(135deg, var(--navy-light) 0%, #3A5098 100%);
+}
+
+.upload-btn:active {
+  transform: translateY(0);
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── 하단 바 ─── */
+.bottom-bar {
+  padding: 24px 0 8px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+}
+
+.menu span {
+  color: var(--border);
+}
+
+.menu a {
+  color: var(--navy-mid);
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  position: relative;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.menu a:hover {
+  opacity: 1;
+  color: var(--navy);
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* ─── 결과 페이지 ─── */
+.result-layout {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 40px 0;
+  flex: 1;
+}
+
+.result-image-box {
+  flex-shrink: 0;
+  width: 560px;
+  height: 480px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.result-image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* 결과 정보 박스 */
+.result-info-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: var(--navy);
+}
+
+.result-info-box h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 12px;
+  display: inline-block;
+}
+
+#resultText {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--navy-mid);
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* 진행도 바 */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(26,42,94,0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--navy-mid), var(--accent));
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#progressText {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--navy-mid);
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+}
+
+/* 다시 업로드 버튼 */
+.result-info-box button {
+  align-self: flex-start;
+  padding: 12px 28px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: white;
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(26,42,94,0.3);
+}
+
+.result-info-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,42,94,0.4);
+}
+
+/* ─── 애니메이션 ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.main-layout,
+.result-layout {
+  animation: fadeUp 0.6s ease both;
+}
+
+.input-box,
+.result-image-box {
+  animation: fadeUp 0.6s 0.1s ease both;
+}
