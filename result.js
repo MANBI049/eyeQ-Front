@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebas
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "본인 키 입력",
+  apiKey: "AIzaSyDEsigQt-WT2P2dmQgOlYZ0SekQvV0j87w",
   authDomain: "server1-9be58.firebaseapp.com",
   projectId: "server1-9be58",
   storageBucket: "server1-9be58.firebasestorage.app",

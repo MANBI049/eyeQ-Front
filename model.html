@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>모델 설명 - eyeQ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .model-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 100px 48px 48px;
+    }
+
+    /* 페이지 제목 */
+    .model-hero {
+      padding: 60px 0 48px;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .about-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .model-hero h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .model-hero h1 span {
+      color: var(--accent);
+    }
+
+    .model-hero p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--navy-mid);
+      line-height: 1.9;
+      opacity: 0.75;
+      max-width: 600px;
+    }
+
+    /* 섹션 공통 */
+    .model-section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--navy-mid);
+      line-height: 1.9;
+      opacity: 0.8;
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+
+    /* 모델 구조 카드들 */
+    .model-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .model-card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .model-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--navy-mid), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .model-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-strong);
+      border-color: rgba(0,198,255,0.3);
+    }
+
+    .model-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-number {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--navy);
+      opacity: 0.08;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--navy-mid);
+      line-height: 1.8;
+      opacity: 0.75;
+    }
+
+    /* 진행 단계 */
+    .stage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stage-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: var(--glass);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 28px;
+      transition: all 0.3s ease;
+    }
+
+    .stage-item:hover {
+      border-color: rgba(0,198,255,0.3);
+      box-shadow: var(--shadow);
+      transform: translateX(4px);
+    }
+
+    .stage-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 1px;
+    }
+
+    .stage-info {
+      flex: 1;
+    }
+
+    .stage-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .stage-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--navy-mid);
+      opacity: 0.75;
+      line-height: 1.7;
+    }
+
+    /* 성능 지표 */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .metric-card {
+      background: var(--glass);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: rgba(0,198,255,0.3);
+    }
+
+    .metric-value {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-value span {
+      font-size: 24px;
+      color: var(--accent);
+    }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--navy-mid);
+      opacity: 0.65;
+      letter-spacing: 0.5px;
+    }
+
+    /* 홈으로 버튼 */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 48px;
+      padding: 12px 28px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: white;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(26,42,94,0.3);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,42,94,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 바 -->
+  <div class="top-bar">
+    <div class="team-logo"></div>
+    <div class="top-txt"><span>eyeQ</span></div>
+    <div class="top-txt2"><span>설계 및 프로젝트 심화II</span></div>
+  </div>
+
+  <div class="model-container">
+
+    <!-- 페이지 제목 -->
+    <div class="model-hero">
+      <div class="about-label">Model Description</div>
+      <h1>AI <span>모델</span> 설명</h1>
+      <p>여기에 모델 전체 소개 설명을 입력하세요.</p>
+    </div>
+
+    <!-- 섹션 1 - 모델 구조 -->
+    <div class="model-section">
+      <div class="section-label">Architecture</div>
+      <div class="section-title">모델 구조</div>
+      <div class="section-desc">여기에 모델 구조에 대한 설명을 입력하세요.</div>
+
+      <div class="model-cards">
+        <div class="model-card">
+          <div class="card-number">01</div>
+          <div class="card-title">카드 제목 1</div>
+          <div class="card-desc">설명을 입력하세요.</div>
+        </div>
+        <div class="model-card">
+          <div class="card-number">02</div>
+          <div class="card-title">카드 제목 2</div>
+          <div class="card-desc">설명을 입력하세요.</div>
+        </div>
+        <div class="model-card">
+          <div class="card-number">03</div>
+          <div class="card-title">카드 제목 3</div>
+          <div class="card-desc">설명을 입력하세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 섹션 2 - 진행 단계 -->
+    <div class="model-section">
+      <div class="section-label">Stages</div>
+      <div class="section-title">진행 단계 (0 ~ 4단계)</div>
+      <div class="section-desc">여기에 진행 단계에 대한 설명을 입력하세요.</div>
+
+      <div class="stage-list">
+        <div class="stage-item">
+          <div class="stage-badge">0</div>
+          <div class="stage-info">
+            <div class="stage-title">0단계 - 제목 입력</div>
+            <div class="stage-desc">설명을 입력하세요.</div>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-badge">1</div>
+          <div class="stage-info">
+            <div class="stage-title">1단계 - 제목 입력</div>
+            <div class="stage-desc">설명을 입력하세요.</div>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-badge">2</div>
+          <div class="stage-info">
+            <div class="stage-title">2단계 - 제목 입력</div>
+            <div class="stage-desc">설명을 입력하세요.</div>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-badge">3</div>
+          <div class="stage-info">
+            <div class="stage-title">3단계 - 제목 입력</div>
+            <div class="stage-desc">설명을 입력하세요.</div>
+          </div>
+        </div>
+        <div class="stage-item">
+          <div class="stage-badge">4</div>
+          <div class="stage-info">
+            <div class="stage-title">4단계 - 제목 입력</div>
+            <div class="stage-desc">설명을 입력하세요.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 섹션 3 - 성능 지표 -->
+    <div class="model-section">
+      <div class="section-label">Performance</div>
+      <div class="section-title">모델 성능</div>
+      <div class="section-desc">여기에 모델 성능에 대한 설명을 입력하세요.</div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-value">00<span>%</span></div>
+          <div class="metric-label">지표 이름 1</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">00<span>%</span></div>
+          <div class="metric-label">지표 이름 2</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">00<span>%</span></div>
+          <div class="metric-label">지표 이름 3</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">00<span>%</span></div>
+          <div class="metric-label">지표 이름 4</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-btn">← 홈으로</a>
+
+  </div>
+
+  <!-- 하단 바 -->
+  <div class="bottom-bar" style="max-width:1400px; margin: 0 auto; padding-left:48px; padding-right:48px;">
+    <div class="menu">
+      <a href="about.html">사이트 소개</a>
+      <span>|</span>
+      <a href="model.html">모델 설명</a>
+      <span>|</span>
+      <a href="reference.html">레퍼런스</a>
+    </div>
+  </div>
+
+</body>
+</html>
