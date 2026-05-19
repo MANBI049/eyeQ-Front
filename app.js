@@ -57,7 +57,7 @@ async function uploadToServer(file) {
     uploadBtn.disabled = true;
 
     const formData = new FormData();
-    formData.append("image", File); 
+    formData.append("image", file); 
 
     const response = await fetch("https://guide-angles-muzzle.ngrok-free.dev/api/images", {
       method: "POST",
