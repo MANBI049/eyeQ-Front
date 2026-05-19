@@ -7,6 +7,8 @@ const docId = params.get("id");
 
 const resultImg = document.getElementById("resultImg");
 const resultText = document.getElementById("resultText");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
 
 const CLASS_KO = {
   Healthy: "정상",
@@ -18,42 +20,60 @@ const CLASS_KO = {
 
 function toPercent(value) {
   const num = Number(value);
-
-  if (Number.isNaN(num)) {
-    return "0.00%";
-  }
-
+  if (Number.isNaN(num)) return "0.00%";
   return `${(num * 100).toFixed(2)}%`;
 }
 
-function makePredictionText(prediction) {
+function renderPrediction(prediction) {
   if (!prediction) {
-    return "AI 분석 결과가 없습니다.";
+    resultText.textContent = "AI 분석 결과가 없습니다.";
+    return;
   }
 
-  const className =
-    prediction.predictedClassName ||
-    prediction.predicted_class_name ||
-    "알 수 없음";
-
-  const classId =
-    prediction.predictedClassId ??
-    prediction.predicted_class_id ??
-    "알 수 없음";
-
+  const className = prediction.predictedClassName || prediction.predicted_class_name || "알 수 없음";
+  const classId = prediction.predictedClassId ?? prediction.predicted_class_id ?? 0;
   const probabilities = prediction.probabilities || {};
 
-  let text = "";
+  // 예측 결과 텍스트
+  resultText.innerHTML = `
+    <strong style="font-size:18px; color:var(--navy);">
+      ${CLASS_KO[className] || className}
+    </strong>
+    <span style="font-size:13px; color:var(--accent); margin-left:10px;">
+      (단계 ${classId})
+    </span>
+  `;
 
-  text += `예측 결과: ${CLASS_KO[className] || className}\n`;
-  text += `예측 클래스 ID: ${classId}\n\n`;
-  text += `클래스별 확률\n`;
+  // 진행도 바 (0~4단계 → 0~100%)
+  const fillWidth = (classId / 4) * 100;
+  progressFill.style.width = `${fillWidth}%`;
 
-  for (const [key, value] of Object.entries(probabilities)) {
-    text += `- ${CLASS_KO[key] || key}: ${toPercent(value)}\n`;
-  }
+  // 클래스별 확률 표시
+  const probRows = Object.entries(probabilities)
+    .map(([key, value]) => {
+      const pct = (Number(value) * 100).toFixed(1);
+      return `
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+          <span style="width:60px; font-size:13px; color:var(--navy-mid); opacity:0.8;">
+            ${CLASS_KO[key] || key}
+          </span>
+          <div style="flex:1; height:6px; background:rgba(26,42,94,0.1); border-radius:999px; overflow:hidden;">
+            <div style="width:${pct}%; height:100%; background:linear-gradient(90deg, var(--navy-mid), var(--accent)); border-radius:999px;"></div>
+          </div>
+          <span style="width:48px; font-size:13px; color:var(--navy-mid); text-align:right;">${pct}%</span>
+        </div>
+      `;
+    })
+    .join("");
 
-  return text;
+  progressText.innerHTML = `
+    <div style="margin-top:8px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:2px; color:var(--accent); margin-bottom:12px;">
+        클래스별 확률
+      </div>
+      ${probRows}
+    </div>
+  `;
 }
 
 async function loadResult() {
@@ -66,9 +86,7 @@ async function loadResult() {
     }
 
     if (!docId || docId === "undefined" || docId === "null") {
-      resultText.textContent =
-        "문서 ID가 없거나 올바르지 않습니다. 다시 업로드해주세요.";
-      console.error("docId가 올바르지 않습니다:", docId);
+      resultText.textContent = "문서 ID가 없거나 올바르지 않습니다. 다시 업로드해주세요.";
       return;
     }
 
@@ -83,13 +101,10 @@ async function loadResult() {
     );
 
     const result = await response.json();
-
     console.log("이미지 조회 응답:", result);
 
     if (!response.ok) {
-      resultText.textContent =
-        result.message || "이미지 정보를 불러오지 못했습니다.";
-      console.error("이미지 조회 실패:", result);
+      resultText.textContent = result.message || "이미지 정보를 불러오지 못했습니다.";
       return;
     }
 
@@ -97,7 +112,6 @@ async function loadResult() {
 
     if (!image || !image.imageUrl) {
       resultText.textContent = "이미지 URL이 없습니다.";
-      console.error("imageUrl 없음:", result);
       return;
     }
 
@@ -105,8 +119,8 @@ async function loadResult() {
     resultImg.style.display = "block";
 
     const prediction = result.prediction || image.prediction;
+    renderPrediction(prediction);
 
-    resultText.textContent = makePredictionText(prediction);
   } catch (error) {
     console.error("불러오기 실패:", error);
     resultText.textContent = `오류: ${error.message}`;
