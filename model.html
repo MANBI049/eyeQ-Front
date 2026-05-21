@@ -215,7 +215,7 @@
     /* 성능 지표 */
     .metric-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -288,6 +288,7 @@
 
   <!-- 상단 바 -->
   <div class="top-bar">
+    <div class="project-logo-top"></div>
     <div class="team-logo"></div>
     <div class="top-txt"><span>eyeQ</span></div>
     <div class="top-txt2"><span>설계 및 프로젝트 심화II</span></div>
@@ -331,42 +332,42 @@
     <div class="model-section">
       <div class="section-label">Stages</div>
       <div class="section-title">진행 단계 (0 ~ 4단계)</div>
-      <div class="section-desc">여기에 진행 단계에 대한 설명을 입력하세요.</div>
+      <div class="section-desc">병의 진행 단계를 정상, 경증, 중등도, 중증, 증식성으로 분류합니다</div>
 
       <div class="stage-list">
         <div class="stage-item">
           <div class="stage-badge">0</div>
           <div class="stage-info">
-            <div class="stage-title">0단계 - 제목 입력</div>
-            <div class="stage-desc">설명을 입력하세요.</div>
+            <div class="stage-title">0단계 - 정상</div>
+            <div class="stage-desc">현재 망막에 출혈이나 신생혈관 같은 합병증 소견이 없습니다.</div>
           </div>
         </div>
         <div class="stage-item">
           <div class="stage-badge">1</div>
           <div class="stage-info">
-            <div class="stage-title">1단계 - 제목 입력</div>
-            <div class="stage-desc">설명을 입력하세요.</div>
+            <div class="stage-title">1단계 - 경증</div>
+            <div class="stage-desc">망막 모세혈관이 손상되어 미세동맥류나 가벼운 출혈이 시작되는 초기 단계입니다.</div>
           </div>
         </div>
         <div class="stage-item">
           <div class="stage-badge">2</div>
           <div class="stage-info">
-            <div class="stage-title">2단계 - 제목 입력</div>
-            <div class="stage-desc">설명을 입력하세요.</div>
+            <div class="stage-title">2단계 - 중등도</div>
+            <div class="stage-desc">망막의 모세혈관이 손상되어 미세출혈과 삼출물 등이 관찰되나, 신생혈관은 아직 발생하지 않은 비증식성 단계입니다.</div>
           </div>
         </div>
         <div class="stage-item">
           <div class="stage-badge">3</div>
           <div class="stage-info">
-            <div class="stage-title">3단계 - 제목 입력</div>
-            <div class="stage-desc">설명을 입력하세요.</div>
+            <div class="stage-title">3단계 - 중증</div>
+            <div class="stage-desc">약하고 비정상적인 신생 혈관이 자라나 대량 출혈, 망막 박리, 실명을 유발할 수 있습니다.</div>
           </div>
         </div>
         <div class="stage-item">
           <div class="stage-badge">4</div>
           <div class="stage-info">
-            <div class="stage-title">4단계 - 제목 입력</div>
-            <div class="stage-desc">설명을 입력하세요.</div>
+            <div class="stage-title">4단계 - 증식성</div>
+            <div class="stage-desc">망막 혈관이 막혀 산소가 부족해지면서 비정상적인 '신생 혈관'이 자라나는 가장 심각한 후기 상태입니다.</div>
           </div>
         </div>
       </div>
@@ -376,7 +377,6 @@
     <div class="model-section">
       <div class="section-label">Performance</div>
       <div class="section-title">모델 성능</div>
-      <div class="section-desc">여기에 모델 성능에 대한 설명을 입력하세요.</div>
 
       <div class="metric-grid">
         <div class="metric-card">
@@ -391,10 +391,7 @@
           <div class="metric-value">00<span>%</span></div>
           <div class="metric-label">지표 이름 3</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-value">00<span>%</span></div>
-          <div class="metric-label">지표 이름 4</div>
-        </div>
+
       </div>
     </div>
 
