@@ -49,22 +49,52 @@ function renderPrediction(prediction) {
   progressFill.style.width = `${fillWidth}%`;
 
   // 클래스별 확률 표시
-  const probRows = Object.entries(probabilities)
-    .map(([key, value]) => {
-      const pct = (Number(value) * 100).toFixed(1);
-      return `
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
-          <span style="width:60px; font-size:13px; color:var(--navy-mid); opacity:0.8;">
-            ${CLASS_KO[key] || key}
-          </span>
-          <div style="flex:1; height:6px; background:rgba(26,42,94,0.1); border-radius:999px; overflow:hidden;">
-            <div style="width:${pct}%; height:100%; background:linear-gradient(90deg, var(--navy-mid), var(--accent)); border-radius:999px;"></div>
-          </div>
-          <span style="width:48px; font-size:13px; color:var(--navy-mid); text-align:right;">${pct}%</span>
+const orderedClasses = [
+  "Healthy",
+  "Mild",
+  "Moderate",
+  "Severe",
+  "Proliferative",
+];
+
+const probRows = orderedClasses
+  .map((key) => {
+    const value = probabilities[key] || 0;
+    const pct = (Number(value) * 100).toFixed(1);
+
+    return `
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+        <span style="width:60px; font-size:13px; color:var(--navy-mid); opacity:0.8;">
+          ${CLASS_KO[key]}
+        </span>
+
+        <div style="
+          flex:1;
+          height:6px;
+          background:rgba(26,42,94,0.1);
+          border-radius:999px;
+          overflow:hidden;
+        ">
+          <div style="
+            width:${pct}%;
+            height:100%;
+            background:linear-gradient(90deg, var(--navy-mid), var(--accent));
+            border-radius:999px;
+          "></div>
         </div>
-      `;
-    })
-    .join("");
+
+        <span style="
+          width:48px;
+          font-size:13px;
+          color:var(--navy-mid);
+          text-align:right;
+        ">
+          ${pct}%
+        </span>
+      </div>
+    `;
+  })
+  .join("");
 
   progressText.innerHTML = `
     <div style="margin-top:8px;">
