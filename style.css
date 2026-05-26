@@ -54,19 +54,25 @@ body {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
+  position: fixed;
+  right: 30px;
+  top: 7px;
 }
 
 .top-txt {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: 2px;
   margin-left: 12px;
   line-height: 1;
+  position: fixed;
+  left: 90px;
+  top: 20px;
 }
 
 .top-txt2 {
@@ -77,6 +83,9 @@ body {
   margin-left: 12px;
   opacity: 0.7;
   line-height: 1;
+  position: fixed;
+  left: 90px;
+  top: 40px;
 }
 
 /* ─── 컨테이너 ─── */
@@ -111,6 +120,8 @@ body {
   flex-shrink: 0;
   filter: drop-shadow(0 8px 24px rgba(13,27,62,0.15));
   transition: filter 0.3s ease;
+  position: fixed;
+  right: auto;
 }
 
 .project-logo:hover {
@@ -123,10 +134,12 @@ body {
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      width: 48px;
-      height: 48px;
+      width: 60px;
+      height: 60px;
       flex-shrink: 0;
       margin-left: 8px;
+      position: fixed;
+      left: auto;
     }
     
 .project-txt {
