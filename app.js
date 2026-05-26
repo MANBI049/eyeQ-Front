@@ -59,7 +59,7 @@ async function uploadToServer(file) {
     const formData = new FormData();
     formData.append("image", file); 
 
-    const response = await fetch("https://guide-angles-muzzle.ngrok-free.dev/api/images", {
+    const response = await fetch("https://scan-q-backend.onrender.com/api/images", {
       method: "POST",
       headers: {
         "ngrok-skip-browser-warning": "1",

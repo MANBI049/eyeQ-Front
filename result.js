@@ -1,6 +1,6 @@
 // result.js
 
-const API_BASE_URL = "https://guide-angles-muzzle.ngrok-free.dev";
+const API_BASE_URL = "https://scan-q-backend.onrender.com";
 
 const params = new URLSearchParams(window.location.search);
 const docId = params.get("id");
